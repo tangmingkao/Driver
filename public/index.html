@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/dist/umd/driver.js"></script>
+    <link rel="stylesheet" href="/dist/umd/driver.css">
+</head>
+
+<body>
+    <div id="step-1">hello world1</div>
+    <div id="step-2">hello world2</div>
+    <div id="step-3">hello world3</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log(222);
+        var driverClient = new Driver({
+            allowClose: false,
+            animate: true,
+            stageBackground: 'rgba(39,45,52,1)',
+        });
+        var stepDefinition1 = {
+            element: '#step-1',
+            popover: {
+                title: 'step-1',
+                className: 'step-1',
+                position: 'bottom-center',
+                // offset: -20,
+            },
+        };
+        var stepDefinition2 = {
+            element: '#step-2',
+            popover: {
+                title: 'step-2',
+                className: 'step-2',
+                position: 'bottom-center',
+            },
+            // Called when moving to next step from current step
+        };
+        var stepDefinition3 = {
+            element: '#step-3',
+            popover: {
+                title: 'step-3',
+                className: 'step-3',
+                position: 'bottom-center',
+            },
+        };
+        driverClient.defineSteps([stepDefinition1, stepDefinition2, stepDefinition3]);
+        driverClient.start(1);
+    });
+</script>
+
+</html>
